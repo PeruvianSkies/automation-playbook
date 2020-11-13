@@ -1,0 +1,17 @@
+---
+- hosts: nginx
+  tasks:
+  - name: remove nginx
+    apt:
+      name:
+      - nginx
+      - nginx-common
+      state: absent
+
+  - name: delete dependencies
+    apt:
+      autoclean: yes
+
+  - name: delete dependencies
+    apt:
+      autoremove: yes

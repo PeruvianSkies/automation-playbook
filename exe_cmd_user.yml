@@ -1,0 +1,13 @@
+---
+- hosts: docker
+  tasks:
+  - name: Execute a command using the shell module
+    become: true
+    become_user: root
+    shell:
+      cmd:
+      - systemctl start docker
+      - systemctl enable docker
+      - groupadd docker
+      - gpasswd -a ${USER} docker
+      - su - $USER

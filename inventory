@@ -1,0 +1,12 @@
+[nginx]
+54.237.126.220 ansible_user=nginx ansible_python_interpreter=/usr/bin/python3
+
+[docker]
+172.31.58.187 ansible_user=frontend ansible_python_interpreter=/usr/bin/python3
+172.31.54.65 ansible_user=backend ansible_python_interpreter=/usr/bin/python3
+172.31.64.50 ansible_user=monitoring ansible_python_interpreter=/usr/bin/python3
+172.31.77.50 ansible_user=jenkins ansible_python_interpreter=/usr/bin/python3
+
+[mysql]
+172.31.74.123 ansible_user=database ansible_python_interpreter=/usr/bin/python3
+
