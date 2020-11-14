@@ -1,0 +1,10 @@
+---
+- hosts: docker
+  tasks:
+  - name: Copy file node_exporter
+    become: true
+    become_user: root
+    copy:
+      src: /home/ansible/node_exporter.service
+      dest: /etc/systemd/system/node_exporter.service
+      

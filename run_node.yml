@@ -1,0 +1,14 @@
+---
+- hosts: docker
+  become: true
+  become_user: root
+  tasks:
+  - name: Execute a command for reload node
+    shell:
+      cmd: systemctl daemon-reload
+  - name: Execute a command for enable node
+    shell:
+      cmd: systemctl enable node_exporter
+  - name: Execute a command for start node
+    shell:
+      cmd: systemctl start node_exporter.service
