@@ -1,0 +1,53 @@
+---
+- hosts: 172.31.58.187
+  tasks:
+  - name: install pip3
+    apt: name=python3-pip state=present
+  - name: Install Docker Module for Python
+    pip:
+      name: docker
+  - name: Container frontend
+    docker_container:
+      name: frontend
+      image: peruvian/frontend:1.0
+      ports: 3000:3000
+  - name: Run container
+    command: docker container start frontend
+
+- hosts: 172.31.54.65
+  tasks:
+  - name: install pip3
+    apt: name=python3-pip state=present
+  - name: Install Docker Module for Python
+    pip:
+      name: docker
+  - name: Container backend
+    docker_container:
+      name: backend
+      image: peruvian/backend:1.0
+      ports: 5000:5000
+  - name: Run container
+    command: docker container start backend
+
+- hosts: 172.31.77.50
+  tasks:
+  - name: install pip3
+    apt: name=python3-pip state=present
+  - name: Install Docker Module for Python
+    pip:
+      name: docker
+  - name: Jenkins file
+    file:
+      path: /home/jenkins/jenkins_home
+      state: directory
+      owner: 1000
+      group: 1000
+
+  - name: Container jenkins
+    docker_container:
+      name: jenkins
+      image: jenkins/jenkins:lts
+      ports: 8080:8080
+      volumes: /home/jenkins/jenkins_home:/var/jenkins_home
+  - name: Run container
+    command: docker container start jenkins
